@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Dear Anisha </title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, #24152d, #080808 55%);
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.page {
+    min-height: 100vh;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 20px;
+}
+
+.page.active {
+    display: flex;
+}
+
+.card {
+    width: 100%;
+    max-width: 520px;
+    padding: 30px 24px;
+    border-radius: 28px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 0 40px rgba(255,255,255,0.05);
+}
+
+.heart {
+    font-size: 65px;
+    animation: heartbeat 1.5s infinite;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 29px;
+    margin-bottom: 20px;
+}
+
+p {
+    line-height: 1.8;
+}
+
+.message {
+    color: #d5d5d5;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+button {
+    border: none;
+    padding: 14px 25px;
+    border-radius: 30px;
+    background: white;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 8px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.next {
+    margin-top: 25px;
+}
+
+.info {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.05);
+}
+
+.info p {
+    color: #ddd;
+    margin: 8px 0;
+}
+
+.question-buttons {
+    margin-top: 25px;
+}
+
+.no-btn {
+    background: #222;
+    color: white;
+    border: 1px solid #555;
+}
+
+#answer {
+    margin-top: 20px;
+    min-height: 30px;
+    color: white;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+}
+html {
+    scroll-behavior: smooth;
+}
+
+/* Smooth page entrance */
+.page.active .card {
+    animation: cardEnter 0.8s ease both;
+}
+
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.94);
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* Heart floating animation */
+.heart {
+    animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.18);
+    }
+}
+
+/* Buttons */
+button {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 8px 25px rgba(255, 80, 150, 0.3);
+}
+
+button:active {
+    transform: scale(0.94);
+}
+
+/* Photo animation */
+img {
+    animation: photoEnter 1s ease both;
+}
+
+@keyframes photoEnter {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Photo hover */
+img:hover {
+    transform: scale(1.03);
+    transition: transform 0.4s ease;
+}
+
+/* Glowing card */
+.card {
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.card:hover {
+    box-shadow:
+        0 0 25px rgba(255, 80, 150, 0.12),
+        0 0 60px rgba(140, 80, 255, 0.08);
+  }
+  h1 {
+    animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+    from {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        transform: scale(1);
+    }
+
+    to {
+        text-shadow:
+            0 0 10px rgba(255, 80, 150, 0.8),
+            0 0 25px rgba(255, 80, 150, 0.5),
+            0 0 45px rgba(150, 80, 255, 0.3);
+        transform: scale(1.03);
+    }
+}
+</style>
+</head>
+<script>
+function createHeart() {
+    var heart = document.createElement("div");
+    heart.innerHTML = "❤️";
+
+    heart.style.position = "fixed";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.bottom = "-30px";
+    heart.style.fontSize = "18px";
+    heart.style.pointerEvents = "none";
+    heart.style.zIndex = "999";
+
+    document.body.appendChild(heart);
+
+    heart.animate([
+        { transform: "translateY(0)", opacity: 0 },
+        { transform: "translateY(-100vh)", opacity: 0.7 }
+    ], {
+        duration: 6000,
+        easing: "linear"
+    });
+
+    setTimeout(function() {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 1000);
+</script>
+<body>
+
+<button onclick="playMusic()" style="
+    margin-top:15px;
+    background:linear-gradient(135deg,#ff4d88,#8b5cf6);
+    color:white;
+    border:none;
+    padding:13px 25px;
+    border-radius:30px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+">
+    🎵 Play Our Song ❤️
+</button>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+<!-- PAGE 1 -->
+
+<section class="page active" id="page1">
+
+<div class="card">
+
+<div class="heart">❤️</div>
+
+<h1>My Dear Anisha</h1>
+
+<p class="message">
+My dear Jaan, you wished me on BF Day,
+and it made me really happy.
+
+So I just wanted to make you a little happy too,
+as much as I can.
+
+You are my Jaan,
+so this is the least I can do for you.
+</p>
+
+<button onclick="nextPage(2)">
+Enter, Pagli ✨
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- PAGE 2 -->
+
+<section class="page" id="page2">
+
+<div class="card">
+
+<div style="font-size:55px;">🌙❤️</div>
+
+<h2>Our Beginning</h2>
+
+<div class="info">
+
+<p>✨ Our first meet</p>
+
+<h3>8 May 2025</h3>
+
+<br>
+
+<p>❤️ Our relationship began</p>
+
+<h3>7 July 2026</h3>
+
+</div>
+
+<div class="info">
+
+<div style="font-size:45px;">🌙</div>
+
+<h3>One Special Night</h3>
+
+<p>
+One day, we kept talking the whole night
+until 5 in the morning. ❤️
+</p>
+
+<div style="font-size:25px; margin-top:12px;">
+5:00 AM ⏰
+</div>
+
+</div>
+
+<button class="next" onclick="nextPage(3)">
+Next ✨
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- PAGE 3 -->
+
+<section class="page" id="page3">
+
+<div class="card">
+
+<div style="font-size:55px;">🥰</div>
+
+<h2>About My Pagli</h2>
+
+<p style="color:#aaa;">
+The girl behind all these smiles ❤️
+</p>
+
+<div class="info">
+
+<p>💕 <b>My favourite names for you</b></p>
+
+<p>
+Pagli • Jaan • Gadhi • Janemaan • Patni • Wifu
+</p>
+
+<br>
+
+<p>🎵 <b>Your music vibe</b></p>
+
+<p>
+Sad & love songs
+</p>
+
+<br>
+
+<p>🎬 <b>You like</b></p>
+
+<p>
+K-Dramas
+</p>
+
+<br>
+
+<p>🍗 <b>Your favourite foods</b></p>
+
+<p>
+Chicken • Evefood • Corn • Seeds • Dahi
+</p>
+
+<br>
+
+<p>🎨 <b>Favourite colour</b></p>
+
+<p>
+No specific favourite colour ❤️
+</p>
+
+</div>
+
+<button class="next" onclick="nextPage(4)">
+Next ❤️
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- PAGE 4 -->
+
+<section class="page" id="page4">
+
+<div class="card">
+
+<div style="font-size:55px;">
+🥺❤️
+</div>
+
+<h2>Ek Important Question...</h2>
+
+<p style="font-size:19px;">
+Kya tumhe main pasand hoon? 😁❤️
+</p>
+
+<div class="question-buttons">
+
+<button onclick="answerYes()">
+YES ❤️
+</button>
+
+<button class="no-btn" onclick="answerNo()">
+NO 😏
+</button>
+
+</div>
+
+<p id="answer"></p>
+
+<button class="next" onclick="nextPage(5)">
+Continue ✨
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- PAGE 5 -->
+
+<section class="page" id="page5">
+    <div class="card">
+
+        <div style="font-size:55px;">📸</div>
+
+        <h2>Our Memories</h2>
+
+        <img 
+            src="file_0000000050dc8207b385473ee9a5b87f.png"
+            alt="Our Memory"
+            style="
+                width:100%;
+                max-width:420px;
+                border-radius:20px;
+                margin:20px auto;
+                display:block;
+                box-shadow:0 0 25px rgba(255,255,255,0.15);
+            "
+        >
+
+        <p class="message">
+            A little memory of us ❤️
+        </p>
+
+        <button class="next" onclick="nextPage(6)">
+            Next 💌
+        </button>
+
+    </div>
+</section>
+
+
+<!-- PAGE 6 -->
+
+<section class="page" id="page6">
+
+<div class="card">
+
+<div style="font-size:55px;">
+💌
+</div>
+
+<h2>A Little Letter For You</h2>
+
+<p class="message">
+
+You mean so much to me, Anisha.
+
+I may not always know the perfect words,
+but I want you to know that I care about you
+and I want to see you happy. ❤️
+
+</p>
+
+<button class="next" onclick="nextPage(7)">
+One Last Thing... ✨
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- PAGE 7 -->
+
+<section class="page" id="page7">
+
+<div class="card">
+
+<div style="font-size:65px;">
+♾️❤️
+</div>
+
+<h2>For My Dear Patni</h2>
+
+<p class="message">
+
+I love you infinitely, Pagli 🤗
+
+<br><br>
+
+I love you forever,
+my dear Patni/Wifu ji ❤️
+
+</p>
+
+<div style="font-size:40px;">
+❤️ 🥰 ❤️
+</div>
+
+</div>
+
+</section>
+
+
+
+<script>
+
+function nextPage(pageNumber) {
+
+    document.querySelectorAll(".page").forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    document.getElementById("page" + pageNumber)
+        .classList.add("active");
+
+    window.scrollTo(0, 0);
+}
+
+
+function answerYes() {
+
+    document.getElementById("answer").innerHTML =
+        "I knew it, Pagli! 😁❤️ You just made me smile.";
+
+}
+
+
+function answerNo() {
+
+    document.getElementById("answer").innerHTML =
+        "Hmm... nice try, Pagli 😏❤️";
+
+}
+function playMusic() {
+    var music = document.getElementById("bgMusic");
+    music.play();
+  }
+</script>
+
+</body>
+</html>
